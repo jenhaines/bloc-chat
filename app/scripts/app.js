@@ -10,5 +10,4 @@
  */
 angular
   .module('blocChatApp', [
-    'ngAnimate'
-  ]);
+    'ngAnimate', 'ui-router', 'firebase']);
