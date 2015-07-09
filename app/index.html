@@ -15,14 +15,18 @@
         <a class="navbar-brand" href="#">blocChat</a>
       </div>
     </div>
-    <div class="container-fluid">
+    <div class="container-fluid" ng-controller="RoomCtrl">
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <h2>Room List</h2>
-          <ul class="nav nav-sidebar">
-            <li><a href="#">Room 1</a></li>
-            <li><a href="#">Room 2</a></li>
-            <li><a href="#">Room 3</a></li>
+          <form class="form-inline" ng-submit="submitRoom(room)">
+            <div class="form-group">
+                <input type="text" ng-model="room.name" placeholder="Enter a Room Name">
+            </div>
+            <button type="submit" class="btn btn-primary btn-sm">new</button>
+          </form>
+          <ul class="nav nav-sidebar" ng-repeat="room in rooms">
+            <li><a href="#">{{ room.name }}</a></li>
           </ul>
         </div>
       </div>
@@ -50,7 +54,6 @@
         <!-- AngularFire -->
         <script src="https://cdn.firebase.com/libs/angularfire/1.1.2/angularfire.min.js"></script>
         <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
         <!-- endbuild -->
 </body>
 </html>
