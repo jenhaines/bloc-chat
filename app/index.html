@@ -18,24 +18,23 @@
     <div class="container-fluid" ng-controller="RoomCtrl">
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">            
-              <button class="btn btn-default" ng-click="open()">New Room</button>
+              <button class="btn btn-primary btn-sm" ng-click="open()">New Room</button>
           <h2>Room List</h2>
-          <ul class="nav nav-sidebar" ng-repeat="room in rooms">
-            <li><a href="#">{{ room.name }}</a></li>
+          <ul class="nav nav-sidebar" ng-repeat="rm in rooms">
+            <li><a href="#">{{ rm.name }}</a></li>
           </ul>
         </div>
           <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h1>{{ room.name }}</h1>
               <script type="text/ng-template" id="roomDialog.html">
                   <div class="modal-header">
                       <h3 class="modal-title">bloc Chat</h3>
                   </div>
                   <div class="modal-body">
-                    <div class="form-group">
-                        <input type="text" ng-model="room.name" placeholder="Enter a Room Name">
-                    </div>
+                      <input type="text" ng-model="room.name" placeholder="Enter a Room Name">
                   </div>
                   <div class="modal-footer">
-                      <button class="btn btn-primary" ng-click="ok()">OK</button>
+                      <button class="btn btn-primary" ng-click="ok(room)">OK</button>
                       <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
                   </div>
               </script>

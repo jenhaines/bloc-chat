@@ -7,24 +7,24 @@ angular.module('blocChatApp')
       $scope.open = function() {
           var modalInstance = $modal.open({
             templateUrl: 'roomDialog.html',
+            size: 'sm',
+            controller: 'ModalCtrl',
           });
         };
 
-      $scope.submitRoom = function(room) {
-          var timestamp = Firebase.ServerValue.TIMESTAMP;
-          room.created = timestamp;
-          Room.create(room).then(function(){
-            $scope.room = {};
-          });
-      };
+      
   })
 
- .controller('ModalCtrl', function($scope, $modalInstance){
+ .controller('ModalCtrl', function($scope, Room, $modalInstance, Firebase){
     $scope.room = {name: ''};
-    
-    $scope.ok = function(){
-      $modalInstance.close($scope.room.name);
+
+    $scope.ok = function(room) {
+      var timestamp = Firebase.ServerValue.TIMESTAMP;
+      room.created = timestamp;
+      Room.create(room);
+      $modalInstance.close();
     };
+    
 
     $scope.cancel = function() {
       $modalInstance.dismiss('cancel');
