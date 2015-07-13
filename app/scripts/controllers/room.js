@@ -29,5 +29,11 @@ angular.module('blocChatApp')
     $scope.cancel = function() {
       $modalInstance.dismiss('cancel');
     };
+
+    $scope.hitEnter = function(evt){
+      if(angular.equals(evt.keyCode,13) ){
+        $scope.ok($scope.room);
+      }
+    };
  });
 

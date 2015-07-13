@@ -26,18 +26,24 @@
         </div>
           <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h1>{{ room.name }}</h1>
-              <script type="text/ng-template" id="roomDialog.html">
-                  <div class="modal-header">
-                      <h3 class="modal-title">bloc Chat</h3>
-                  </div>
-                  <div class="modal-body">
-                      <input type="text" ng-model="room.name" placeholder="Enter a Room Name">
-                  </div>
-                  <div class="modal-footer">
-                      <button class="btn btn-primary" ng-click="ok(room)">OK</button>
-                      <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
-                  </div>
-              </script>
+
+            <!-- Start Modal Window -->
+            <script type="text/ng-template" id="roomDialog.html">
+              <div class="modal-header">
+                <h3 class="modal-title">Room Name</h3>
+              </div>
+              <form name="nameDialog" novalidate>
+                <div class="modal-body form-group">
+                  <input type="text" class="form-control" name="roomname" ng-model="room.name" ng-keyup="nameDialog.$valid ? hitEnter($event) : false" ng-minlength=3 ng-maxlength=20 required>
+                </div>
+              </form>
+
+              <div class="modal-footer">
+                <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+                <button ng-disabled="nameDialog.$invalid" class="btn btn-primary" ng-click="ok(room)">OK</button>
+              </div>
+            </script>
+            <!-- End Modal Window -->
 
           </div>
       </div>
