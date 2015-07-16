@@ -3,6 +3,7 @@
 angular.module('blocChatApp')
  .controller('RoomCtrl', function ($scope, Room, Firebase, $modal) {
       $scope.rooms = Room.all;
+      $scope.room = {name: ''};
 
       $scope.open = function() {
           var modalInstance = $modal.open({
@@ -11,6 +12,10 @@ angular.module('blocChatApp')
             controller: 'ModalCtrl',
           });
         };
+
+      $scope.openMessages = function(room){
+        $scope.messages = Room.messages(room.$id);
+      };
 
       
   })

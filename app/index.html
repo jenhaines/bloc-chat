@@ -2,9 +2,7 @@
 <html ng-app="blocChatApp">
   <head>
     <meta charset="utf-8">
-    <title></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
+    <title>Bloc-Chat</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
@@ -17,15 +15,17 @@
     </div>
     <div class="container-fluid" ng-controller="RoomCtrl">
       <div class="row">
-        <div class="col-sm-3 col-md-2 sidebar">            
-              <button class="btn btn-primary btn-sm" ng-click="open()">New Room</button>
-          <h2>Room List</h2>
+        <div class="col-md-2 sidebar">            
+          <h3 class="inline">Room List</h3><button class="btn btn-primary btn-sm inline" ng-click="open()">New Room</button>
           <ul class="nav nav-sidebar" ng-repeat="rm in rooms">
-            <li><a href="#">{{ rm.name }}</a></li>
+            <li><a href="#" ng-click="openMessages(rm)">{{ rm.name }}</a></li>
           </ul>
         </div>
-          <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1>{{ room.name }}</h1>
+          <div class="col-md-10 col-md-offset-2 main">
+          <div ng-repeat="message in messages" ng-class-odd="'odd'" ng-class-even="'even'">
+            <p class="username">{{message.username}}</p>
+            <p>{{message.content}}</p>
+          </div>
 
             <!-- Start Modal Window -->
             <script type="text/ng-template" id="roomDialog.html">
