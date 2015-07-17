@@ -14,14 +14,18 @@ body {
 .navbar-fixed-top {
   border: 0;
 }
-
+.banner-text {
+  color: #fff;
+  font-size: 24px;
+  font-weight: 500;
+}
 /*
  * Sidebar
  */
 
 .sidebar {
   position: fixed;
-  top: 51px;
+  top: 30px;
   bottom: 0;
   left: 0;
   z-index: 1000;
@@ -31,6 +35,10 @@ body {
   overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
   background-color: #f5f5f5;
   border-right: 1px solid #000;
+}
+
+.newroom {
+  font-size: 18px;
 }
 
 /* Sidebar navigation */
@@ -57,6 +65,14 @@ body {
 
 .main {
   padding: 0px;
+}
+.username{
+  font-size: 16px;
+  font-weight: 500;
+  padding-bottom: 10px;
+}
+.sent-at{
+  font-style: italic;
 }
 .main .page-header {
   margin-top: 0;

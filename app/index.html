@@ -7,24 +7,28 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
-  <body>
+  <body ng-controller="RoomCtrl">
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">blocChat</a>
+        <p class="navbar-brand text-center">Bloc Chat</p>
+        <a href="#" class="navbar-brand" ng-click="open()">New Room</a>
+
       </div>
     </div>
-    <div class="container-fluid" ng-controller="RoomCtrl">
+    <div class="container-fluid">
       <div class="row">
         <div class="col-md-2 sidebar">            
-          <h3 class="inline">Room List</h3><button class="btn btn-primary btn-sm inline" ng-click="open()">New Room</button>
+          <h3>Room List</h3>
           <ul class="nav nav-sidebar" ng-repeat="rm in rooms">
             <li><a href="#" ng-click="openMessages(rm)">{{ rm.name }}</a></li>
           </ul>
         </div>
           <div class="col-md-10 col-md-offset-2 main">
-          <div ng-repeat="message in messages" ng-class-odd="'odd'" ng-class-even="'even'">
-            <p class="username">{{message.username}}</p>
-            <p>{{message.content}}</p>
+          <div ng-repeat="message in messages" class="row" ng-class-odd="'odd'" ng-class-even="'even'">
+              <div class="col-md-4 username">{{message.username}}</div>
+              <div class="col-md-4"></div>
+              <div class="col-md-4 sent-at">Sent: {{message.sentAt | fromNow}}</div>
+              <div class="col-md-12">{{message.content}}</div>
           </div>
 
             <!-- Start Modal Window -->
@@ -54,6 +58,7 @@
     <!-- bower:js -->
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 

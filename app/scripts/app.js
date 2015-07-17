@@ -28,4 +28,10 @@ angular
             return $firebaseArray(query);
         }
     };
-   });
+   })
+
+  .filter('fromNow', function() {
+    return function(dateString) {
+      return moment(dateString).fromNow();
+    };
+  });
