@@ -21,7 +21,7 @@ body {
 
 .sidebar {
   position: fixed;
-  top: 51px;
+  top: 26px;
   bottom: 0;
   left: 0;
   z-index: 1000;
@@ -32,18 +32,21 @@ body {
   background-color: #f5f5f5;
   border-right: 1px solid #000;
 }
+.new-room{
+  margin-right: -40px;
+}
 
 /* Sidebar navigation */
 .nav-sidebar {
   margin-right: -21px; /* 20px padding + 1px border */
-  margin-bottom: 10px;
+  margin-bottom: 6px;
   margin-left: -20px;
   font-weight: 500;
-  font-size: 18px;
+  font-size: 16px;
 }
 .nav-sidebar li a {
-  padding-right: 20px;
-  padding-left: 20px;
+  padding: 10px 20px 10px 40px;
+
 }
 .nav-sidebar li a:hover,
 .nav-sidebar li a:focus {
