@@ -9,7 +9,7 @@
  * Main module of the application.
  */
 angular
-  .module('blocChatApp', ['ui.router', 'firebase', 'ui.bootstrap'])
+  .module('blocChatApp', ['ui.router', 'firebase', 'ui.bootstrap', 'ngCookies'])
 
   .constant('FIREBASE_URL', 'https://jennifer.firebaseio.com')
 
