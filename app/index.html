@@ -10,14 +10,13 @@
   <body ng-controller="RoomCtrl">
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
-        <p class="navbar-brand text-center">Bloc Chat</p>
-        <a href="#" class="navbar-brand" ng-click="open()">New Room</a>
-
+        <a class="navbar-brand" href="#">blocChat</a>
+        <a class="navbar-brand" href="#" ng-click="open()">New Room</a>
       </div>
     </div>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-2 sidebar">            
+        <div class="col-md-2 sidebar">
           <h3>Room List</h3>
           <ul class="nav nav-sidebar" ng-repeat="rm in rooms">
             <li><a href="#" ng-click="openMessages(rm)">{{ rm.name }}</a></li>
