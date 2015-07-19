@@ -11,7 +11,7 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">blocChat</a>
-        <a class="navbar-brand" href="#" ng-click="open()">New Room</a>
+        <a class="navbar-brand" href="#" ng-click="roomOpen()">New Room</a>
       </div>
     </div>
     <div class="container-fluid">
@@ -30,7 +30,7 @@
               <div class="col-md-12">{{message.content}}</div>
           </div>
 
-            <!-- Start Modal Window -->
+            <!-- Add Room Modal Window -->
             <script type="text/ng-template" id="roomDialog.html">
               <div class="modal-header">
                 <h3 class="modal-title">Room Name</h3>
@@ -47,6 +47,23 @@
               </div>
             </script>
             <!-- End Modal Window -->
+            <!-- Username Modal Windows -->
+            <script type="text/ng-template" id="userDialog.html">
+              <div class="modal-header">
+                <h3 class="modal-title">Enter Username</h3>
+              </div>
+              <form name="userDialog" novalidate>
+                <div class="modal-body form-group">
+                  <input type="text" class="form-control" name="roomname" ng-model="room.name" ng-keyup="userDialog.$valid ? hitEnter($event) : false" ng-minlength=3 ng-maxlength=20 required>
+                </div>
+              </form>
+
+              <div class="modal-footer">
+                <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+                <button ng-disabled="userDialog.$invalid" class="btn btn-primary" ng-click="ok(room)">OK</button>
+              </div>
+            </script>
+            <!-- End Username Window -->
 
           </div>
       </div>

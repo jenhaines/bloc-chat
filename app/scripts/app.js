@@ -34,4 +34,12 @@ angular
     return function(dateString) {
       return moment(dateString).fromNow();
     };
-  });
+  })
+
+  .run(['$cookies', function($cookies) {
+
+    if (!$cookies.blocChatCurrentUser || $cookies.blocChatCurrentUser === '' ) {
+        // Do something to allow users to set their username
+    }
+
+  }])
