@@ -36,10 +36,16 @@ angular
     };
   })
 
-  .run(['$cookies', function($cookies) {
+  .run(function($cookies, $modal) {
 
-    if (!$cookies.blocChatCurrentUser || $cookies.blocChatCurrentUser === '' ) {
+    if (!$cookies.blocChatUser || $cookies.blocChatUser === '' ) {
         // Do something to allow users to set their username
-    }
-
-  }])
+           $modal.open({
+             templateUrl: 'userDialog.html',
+             keyboard: false,
+             backdrop: 'static',
+             size: 'sm',
+             controller: 'UserModalCtrl',
+           });
+      }
+  });

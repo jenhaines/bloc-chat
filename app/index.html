@@ -17,6 +17,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-2 sidebar">
+        <h3>{{!blocChatUser ? "undefined" : blocChatUser}}</h3>
           <h3>Room List</h3>
           <ul class="nav nav-sidebar" ng-repeat="rm in rooms">
             <li><a href="#" ng-click="openMessages(rm)">{{ rm.name }}</a></li>
@@ -54,13 +55,12 @@
               </div>
               <form name="userDialog" novalidate>
                 <div class="modal-body form-group">
-                  <input type="text" class="form-control" name="roomname" ng-model="room.name" ng-keyup="userDialog.$valid ? hitEnter($event) : false" ng-minlength=3 ng-maxlength=20 required>
+                  <input type="text" class="form-control" name="username" ng-model="user.name" ng-keyup="userDialog.$valid ? hitEnter($event) : false" ng-minlength=3 ng-maxlength=20 required>
                 </div>
               </form>
 
               <div class="modal-footer">
-                <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
-                <button ng-disabled="userDialog.$invalid" class="btn btn-primary" ng-click="ok(room)">OK</button>
+                <button ng-disabled="userDialog.$invalid" class="btn btn-primary" ng-click="ok(user)">OK</button>
               </div>
             </script>
             <!-- End Username Window -->
