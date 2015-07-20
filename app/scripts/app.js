@@ -37,15 +37,72 @@ angular
   })
 
   .run(function($cookies, $modal) {
-
     if (!$cookies.blocChatUser || $cookies.blocChatUser === '' ) {
         // Do something to allow users to set their username
-           $modal.open({
+           var modalInstance = $modal.open({
              templateUrl: 'userDialog.html',
+             controller: 'UserModalCtrl',
              keyboard: false,
              backdrop: 'static',
              size: 'sm',
-             controller: 'UserModalCtrl',
            });
       }
-  });
+  })
+
+ .controller('RoomCtrl', function ($scope, Room, Firebase, $modal) {
+      $scope.rooms = Room.all;
+      $scope.room = {name: ''};
+
+      $scope.roomOpen = function() {
+          var modalInstance = $modal.open({
+            templateUrl: 'roomDialog.html',
+            size: 'sm',
+            controller: 'RoomModalCtrl',
+          });
+        };
+
+      $scope.openMessages = function(room){
+        $scope.messages = Room.messages(room.$id);
+      };
+
+      
+  })
+
+ .controller('RoomModalCtrl', function($scope, Room, $modalInstance, Firebase){
+    $scope.room = {name: ''};
+
+    $scope.ok = function(room) {
+      var timestamp = Firebase.ServerValue.TIMESTAMP;
+      room.created = timestamp;
+      Room.create(room);
+      $modalInstance.close();
+    };
+    
+
+    $scope.cancel = function() {
+      $modalInstance.dismiss('cancel');
+    };
+
+    $scope.hitEnter = function(evt){
+      if(angular.equals(evt.keyCode,13) ){
+        $scope.ok($scope.room);
+      }
+    };
+ })
+
+ .controller('UserModalCtrl', function($scope, $modalInstance, $cookies){
+
+    $scope.ok = function(username) {
+      $cookies.blocChatUser = username;
+      $scope.blocChatUser = username;
+      $modalInstance.close($scope.blocChatUser);
+    };
+    
+
+    $scope.hitEnter = function(evt){
+      if(angular.equals(evt.keyCode,13) ){
+        $scope.ok($scope.username);
+      }
+    };
+ });
+
