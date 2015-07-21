@@ -17,6 +17,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-2 sidebar">
+        <h3>{{blocChatUser}}</h3>
           <h3>Room List</h3>
           <ul class="nav nav-sidebar" ng-repeat="rm in rooms">
             <li><a href="#" ng-click="openMessages(rm)">{{ rm.name }}</a></li>
@@ -47,22 +48,23 @@
               </div>
             </script>
             <!-- End Modal Window -->
-            <!-- Username Modal Windows -->
-            <script type="text/ng-template" id="userDialog.html">
-              <div class="modal-header">
-                <h3 class="modal-title">Enter Username</h3>
-              </div>
-              <form name="userDialog" novalidate>
-                <div class="modal-body form-group">
-                  <input type="text" class="form-control" name="username" ng-model="username" ng-keyup="userDialog.$valid ? hitEnter($event) : false" ng-minlength=3 ng-maxlength=20 required>
-                </div>
-              </form>
 
-              <div class="modal-footer">
-                <button ng-disabled="userDialog.$invalid" class="btn btn-primary" ng-click="ok(username)">OK</button>
-              </div>
-            </script>
-            <!-- End Username Window -->
+           <!-- Username Modal Windows -->
+           <script type="text/ng-template" id="userDialog.html">
+             <div class="modal-header">
+               <h3 class="modal-title">Enter Username</h3>
+             </div>
+             <form name="userDialog" novalidate>
+               <div class="modal-body form-group">
+                 <input type="text" class="form-control" name="username" ng-model="username" ng-keyup="userDialog.$valid ? hitEnter($event) : false" ng-minlength=3 ng-maxlength=20 required>
+               </div>
+             </form>
+
+             <div class="modal-footer">
+               <button ng-disabled="userDialog.$invalid" class="btn btn-primary" ng-click="ok(username)">OK</button>
+             </div>
+           </script>
+           <!-- End Username Window -->
 
           </div>
       </div>

@@ -38,20 +38,21 @@ angular
 
   .run(function($cookies, $modal) {
     if (!$cookies.blocChatUser || $cookies.blocChatUser === '' ) {
-        // Do something to allow users to set their username
-           var modalInstance = $modal.open({
-             templateUrl: 'userDialog.html',
-             controller: 'UserModalCtrl',
-             keyboard: false,
-             backdrop: 'static',
-             size: 'sm',
-           });
-      }
+      // Do something to allow users to set their username
+      var modalInstance = $modal.open({
+        templateUrl: 'userDialog.html',
+        controller: 'UserModalCtrl',
+        keyboard: false,
+        backdrop: 'static',
+        size: 'sm'
+      });
+    }
   })
 
- .controller('RoomCtrl', function ($scope, Room, Firebase, $modal) {
+ .controller('RoomCtrl', function ($scope, Room, Firebase, $modal, $cookies) {
       $scope.rooms = Room.all;
       $scope.room = {name: ''};
+      $scope.blocChatUser = $cookies.blocChatUser;
 
       $scope.roomOpen = function() {
           var modalInstance = $modal.open({
@@ -63,9 +64,7 @@ angular
 
       $scope.openMessages = function(room){
         $scope.messages = Room.messages(room.$id);
-      };
-
-      
+      }; 
   })
 
  .controller('RoomModalCtrl', function($scope, Room, $modalInstance, Firebase){
@@ -94,8 +93,7 @@ angular
 
     $scope.ok = function(username) {
       $cookies.blocChatUser = username;
-      $scope.blocChatUser = username;
-      $modalInstance.close($scope.blocChatUser);
+      $modalInstance.close();
     };
     
 
