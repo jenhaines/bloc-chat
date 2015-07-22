@@ -11,15 +11,27 @@
   <input type="hidden" ng-value="roomid" />
 <div class="navbar navbar-inverse navbar-fixed-top">
 <div class="container-fluid">
+<div class="row">
 
-<ul class="nav navbar-nav navbar-left">
-<li><a class="navbar-brand">{{'Welcome to BlocChat '+blocChatUser+'!'}}</a></li>
-<li><a class="navbar-brand" href="#" ng-click="roomOpen()">New Room</a></li>
-</ul>
-<form class="navbar-form navbar-right" name="msgDialog" novalidate>
-<input type="text" class="msgbox" ng-model="msgcontent" placeholder="Enter Message" name="msg" ng-keyup="msgDialog.$valid ? hitEnter($event) : false" ng-minlength=3 ng-maxlength=20 required>
-<button type="submit" ng-disabled="msgDialog.$invalid" ng-click="sendMsg(roomid)" class="btn btn-success">Send message</button>
+<div class="col-md-3">
+<a class="navbar-brand">{{'Welcome to BlocChat '+blocChatUser+'!'}}</a>
+<a class="navbar-brand" href="#" ng-click="roomOpen()">New Room</a>
+</div>
+
+<div class="col-md-9">
+
+<form name="msgDialog" novalidate>
+<div class="input-group">
+<input type="text" class="form-control" ng-model="msgcontent" placeholder="Enter Message" name="msg" ng-keyup="msgDialog.$valid ? hitEnter($event, roomid) : false" ng-minlength=1 ng-maxlength=400 required>
+<span class="input-group-btn">
+<button type="button" ng-disabled="msgDialog.$invalid" ng-click="sendMsg(roomid)" class="btn btn-success">Send</button>
+</span>
 </form>
+</div>
+
+</div>
+
+</div>
 </div>
 </div>
 

@@ -89,6 +89,12 @@ angular
         Message.send(msg);
         $scope.msgcontent = '';
       };
+
+      $scope.hitEnter = function(evt, room){
+        if(angular.equals(evt.keyCode,13) ){
+          $scope.sendMsg(room);
+        }
+      };
   })
 
  .controller('RoomModalCtrl', function($scope, Room, $modalInstance, Firebase){
