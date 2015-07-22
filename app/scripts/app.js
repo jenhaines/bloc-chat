@@ -30,6 +30,17 @@ angular
     };
    })
 
+  .factory('Message', function($firebase, $firebaseArray, $firebaseObject, FIREBASE_URL, Firebase){
+      var ref = new Firebase(FIREBASE_URL).child('messages');
+
+      var messages = $firebaseArray(ref);
+      return {
+        send: function(newMsg){
+          return messages.$add(newMsg);
+        }
+      };
+    })
+
   .filter('fromNow', function() {
     return function(dateString) {
       return moment(dateString).fromNow();
@@ -49,7 +60,7 @@ angular
     }
   })
 
- .controller('RoomCtrl', function ($scope, Room, Firebase, $modal, $cookies) {
+ .controller('RoomCtrl', function ($scope, Room, Message, Firebase, $modal, $cookies) {
       $scope.rooms = Room.all;
       $scope.room = {name: ''};
       $scope.blocChatUser = $cookies.blocChatUser;
@@ -64,7 +75,20 @@ angular
 
       $scope.openMessages = function(room){
         $scope.messages = Room.messages(room.$id);
-      }; 
+        $scope.roomid = room.$id;
+      };
+
+      $scope.sendMsg = function(room){
+        var timestamp = Firebase.ServerValue.TIMESTAMP;
+        var msg = {
+          username: $cookies.blocChatUser,
+          content: $scope.msgcontent,
+          sentAt: timestamp,
+          roomId: room,
+        };
+        Message.send(msg);
+        $scope.msgcontent = '';
+      };
   })
 
  .controller('RoomModalCtrl', function($scope, Room, $modalInstance, Firebase){
