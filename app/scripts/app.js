@@ -134,6 +134,7 @@ angular
     $scope.ok = function(username) {
       $cookies.simpleChatUser = username;
       $modalInstance.close().then(function(){
+          console.log('from within $modalInstance.close()');
           $timeout(function(){
             angular.element('#0').triggerHandler('click');
           }, 100);

@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>simpleChat</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,400,600,700,300' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
@@ -14,8 +15,7 @@
 <div class="row">
 
 <div class="col-md-3">
-<a class="navbar-brand">{{'Welcome to SimpleChat '+simpleChatUser+'!'}}</a>
-<a class="navbar-brand" href="#" ng-click="roomOpen()">New Room</a>
+<p class="brand">{{'Welcome to SimpleChat '+simpleChatUser+'!'}}</p>
 </div>
 
 <div class="col-md-9">
@@ -38,7 +38,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-2 sidebar">
-          <h3>Room List</h3>
+          <p>Room List&nbsp<button class="btn btn-primary btn-xs text-right" ng-click="roomOpen()">New Room</button></p>
           <ul class="nav nav-sidebar" ng-repeat="rm in rooms">
             <li><a href="#" id="{{$index}}" ng-click="openMessages(rm)">{{ rm.name }}</a></li>
           </ul>
