@@ -1,20 +1,20 @@
 <!doctype html>
-<html ng-app="blocChatApp">
+<html ng-app="simpleChatApp">
   <head>
     <meta charset="utf-8">
-    <title>Bloc-Chat</title>
+    <title>simpleChat</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
   <body ng-controller="RoomCtrl">
-  <input type="hidden" ng-value="roomid" />
+  <input type="hidden" ng-value="selectedRoom" />
 <div class="navbar navbar-inverse navbar-fixed-top">
 <div class="container-fluid">
 <div class="row">
 
 <div class="col-md-3">
-<a class="navbar-brand">{{'Welcome to BlocChat '+blocChatUser+'!'}}</a>
+<a class="navbar-brand">{{'Welcome to SimpleChat '+simpleChatUser+'!'}}</a>
 <a class="navbar-brand" href="#" ng-click="roomOpen()">New Room</a>
 </div>
 
@@ -40,7 +40,7 @@
         <div class="col-md-2 sidebar">
           <h3>Room List</h3>
           <ul class="nav nav-sidebar" ng-repeat="rm in rooms">
-            <li><a href="#" ng-click="openMessages(rm)">{{ rm.name }}</a></li>
+            <li><a href="#" id="{{$index}}" ng-click="openMessages(rm)">{{ rm.name }}</a></li>
           </ul>
         </div>
           <div class="col-md-10 col-md-offset-2 main">

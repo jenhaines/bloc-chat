@@ -2,18 +2,18 @@
 
 /**
  * @ngdoc overview
- * @name blocChatApp
+ * @name simpleChatApp
  * @description
- * # blocChatApp
+ * # simpleChatApp
  *
  * Main module of the application.
  */
 angular
-  .module('blocChatApp', ['ui.router', 'firebase', 'ui.bootstrap', 'ngCookies'])
+  .module('simpleChatApp', ['ui.router', 'firebase', 'ui.bootstrap', 'ngCookies'])
 
   .constant('FIREBASE_URL', 'https://jennifer.firebaseio.com')
 
-  .factory('Room', function(Firebase, $firebaseArray, FIREBASE_URL) {
+  .factory('Room', function($firebaseArray, FIREBASE_URL) {
     var roomRef = new Firebase(FIREBASE_URL).child('rooms');
     var msgRef = new Firebase(FIREBASE_URL).child('messages');
     var rooms = $firebaseArray(roomRef);
@@ -30,7 +30,7 @@ angular
     };
    })
 
-  .factory('Message', function($firebase, $firebaseArray, $firebaseObject, FIREBASE_URL, Firebase){
+  .factory('Message', function($firebase, $firebaseArray, FIREBASE_URL){
       var ref = new Firebase(FIREBASE_URL).child('messages');
 
       var messages = $firebaseArray(ref);
@@ -48,7 +48,7 @@ angular
   })
 
   .run(function($cookies, $modal) {
-    if (!$cookies.blocChatUser || $cookies.blocChatUser === '' ) {
+    if (!$cookies.simpleChatUser || $cookies.simpleChatUser === '' ) {
       // Do something to allow users to set their username
       var modalInstance = $modal.open({
         templateUrl: 'userDialog.html',
@@ -60,10 +60,11 @@ angular
     }
   })
 
- .controller('RoomCtrl', function ($scope, Room, Message, Firebase, $modal, $cookies) {
+ .controller('RoomCtrl', function ($scope, Room, Message, $modal, $cookies) {
       $scope.rooms = Room.all;
       $scope.room = {name: ''};
-      $scope.blocChatUser = $cookies.blocChatUser;
+      
+      $scope.simpleChatUser = $cookies.simpleChatUser;
 
       $scope.roomOpen = function() {
           var modalInstance = $modal.open({
@@ -75,13 +76,13 @@ angular
 
       $scope.openMessages = function(room){
         $scope.messages = Room.messages(room.$id);
-        $scope.roomid = room.$id;
+        $scope.selectedRoom = room.$id;
       };
 
       $scope.sendMsg = function(room){
         var timestamp = Firebase.ServerValue.TIMESTAMP;
         var msg = {
-          username: $cookies.blocChatUser,
+          username: $cookies.simpleChatUser,
           content: $scope.msgcontent,
           sentAt: timestamp,
           roomId: room,
@@ -95,9 +96,17 @@ angular
           $scope.sendMsg(room);
         }
       };
+
+      $scope.clickOnUpload = function () {
+        $timeout(function() {
+          angular.element('#0').triggerHandler('click');
+        }, 100);
+      };
   })
 
- .controller('RoomModalCtrl', function($scope, Room, $modalInstance, Firebase){
+
+
+ .controller('RoomModalCtrl', function($scope, Room, $modalInstance){
     $scope.room = {name: ''};
 
     $scope.ok = function(room) {
@@ -122,8 +131,12 @@ angular
  .controller('UserModalCtrl', function($scope, $modalInstance, $cookies){
 
     $scope.ok = function(username) {
-      $cookies.blocChatUser = username;
-      $modalInstance.close();
+      $cookies.simpleChatUser = username;
+      $modalInstance.close().then(function(){
+          $timeout(function(){
+            angular.element('#0').triggerHandler('click');
+          }, 100);
+      });
     };
     
 
