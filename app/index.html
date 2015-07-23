@@ -22,9 +22,9 @@
 
 <form name="msgDialog" novalidate>
 <div class="input-group">
-<input type="text" class="form-control" ng-model="msgcontent" placeholder="Enter Message" name="msg" ng-keyup="msgDialog.$valid ? hitEnter($event, roomid) : false" ng-minlength=1 ng-maxlength=400 required>
+<input type="text" class="form-control" ng-model="msgcontent" placeholder="Enter Message" name="msg" ng-keyup="msgDialog.$valid ? hitEnter($event, selectedRoom) : false" ng-minlength=1 ng-maxlength=400 required>
 <span class="input-group-btn">
-<button type="button" ng-disabled="msgDialog.$invalid" ng-click="sendMsg(roomid)" class="btn btn-success">Send</button>
+<button type="button" ng-disabled="msgDialog.$invalid" ng-click="sendMsg(selectedRoom)" class="btn btn-success">Send</button>
 </span>
 </form>
 </div>

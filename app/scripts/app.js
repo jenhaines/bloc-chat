@@ -80,6 +80,7 @@ angular
       };
 
       $scope.sendMsg = function(room){
+        console.log(room);
         var timestamp = Firebase.ServerValue.TIMESTAMP;
         var msg = {
           username: $cookies.simpleChatUser,
