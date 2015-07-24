@@ -6,8 +6,11 @@
 
 body {
   padding-top: 50px;
-  font-family: 'Open Sans', sans-serif;
+  /*font-family: 'Open Sans', sans-serif;*/
 
+}
+.cursive {
+  font-family: 'Architects Daughter', cursive;
 }
 
 /*
@@ -21,7 +24,7 @@ body {
 }
 .brand{
   color: #fff;
-  font-size: 16px;
+  font-size: 18px;
 }
 /*
  * Sidebar
@@ -41,15 +44,8 @@ body {
   border-right: 1px solid #000;
 }
 .sidebar p{
-  font-size: 24px;
-  font-weight: 600;
-}
-.new-room{
-  margin-right: -40px;
-}
-
-.newroom {
-  font-size: 18px;
+  font-size: 28px;
+  font-weight: bold;
 }
 
 /* Sidebar navigation */
@@ -57,8 +53,8 @@ body {
   margin-right: -21px; /* 20px padding + 1px border */
   margin-bottom: 6px;
   margin-left: -20px;
-  font-weight: 500;
-  font-size: 16px;
+  font-weight: bold;
+  font-size: 18px;
 }
 .nav-sidebar li a {
   padding: 10px 20px 10px 40px;
@@ -96,5 +92,12 @@ body {
 .even {
     background-color: #E3F2FF;
     padding: 10px;
+}
+.intro {
+  padding: 50px 120px;
+  font-family: 'Architects Daughter', cursive;
+  text-align: center;
+  /*font-family: 'Open Sans', sans-serif;*/
+  font-size: 24px;
 }
 
