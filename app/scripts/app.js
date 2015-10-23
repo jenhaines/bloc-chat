@@ -62,7 +62,7 @@ angular
   })
 
   .run(function($cookies, $modal) {
-    if (!$cookies.simpleChatUser || $cookies.simpleChatUser === '' ) {
+    if (!$cookies.get('simpleChatUser') || $cookies.get('simpleChatUser') === '' ) {
       // Do something to allow users to set their username
       var modalInstance = $modal.open({
         templateUrl: 'userDialog.html',
@@ -78,7 +78,7 @@ angular
       $scope.rooms = Room.all;
       $scope.room = {name: ''};
       
-      $scope.simpleChatUser = $cookies.simpleChatUser;
+      $scope.simpleChatUser = $cookies.get('simpleChatUser');
 
       $scope.roomOpen = function() {
           var modalInstance = $modal.open({
@@ -97,7 +97,7 @@ angular
         console.log(room);
         var timestamp = Firebase.ServerValue.TIMESTAMP;
         var msg = {
-          username: $cookies.simpleChatUser,
+          username: $cookies.get('simpleChatUser'),
           content: $scope.msgcontent,
           sentAt: timestamp,
           roomId: room,
@@ -146,7 +146,7 @@ angular
  .controller('UserModalCtrl', function($scope, $modalInstance, $cookies){
 
     $scope.ok = function(username) {
-      $cookies.simpleChatUser = username;
+      $cookies.put('simpleChatUser', username);
       $modalInstance.close();
     };
     
